@@ -1,0 +1,218 @@
+﻿@model HutechDriver.Models.EF.Contact
+@{
+    ViewBag.Title = "Index";
+
+}
+@using System.Web
+
+
+
+<!--<link rel="icon" href="images/favicon.ico" type="image/x-icon">-->
+<!-- Stylesheets-->
+<!--<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Roboto:100,300,300i,400,500,600,700,900%7CRaleway:500">
+
+<link href="~/Content/assets/css/bootstrap.css" rel="stylesheet" />
+<link href="~/Content/assets/css/fonts.css" rel="stylesheet" />
+<link href="~/Content/assets/css/style.css" rel="stylesheet" />-->
+<link href="~/Content/css/Style2.css" rel="stylesheet" />
+<link href="~/Content/assets/css/social.css" rel="stylesheet" />
+
+<body>
+    <div class="preloader">
+        <div class="wrapper-triangle">
+            <div class="pen">
+                <div class="line-triangle">
+                    <div class="triangle"></div>
+                    <div class="triangle"></div>
+                    <div class="triangle"></div>
+                    <div class="triangle"></div>
+                    <div class="triangle"></div>
+                    <div class="triangle"></div>
+                    <div class="triangle"></div>
+                </div>
+                <div class="line-triangle">
+                    <div class="triangle"></div>
+                    <div class="triangle"></div>
+                    <div class="triangle"></div>
+                    <div class="triangle"></div>
+                    <div class="triangle"></div>
+                    <div class="triangle"></div>
+                    <div class="triangle"></div>
+                </div>
+                <div class="line-triangle">
+                    <div class="triangle"></div>
+                    <div class="triangle"></div>
+                    <div class="triangle"></div>
+                    <div class="triangle"></div>
+                    <div class="triangle"></div>
+                    <div class="triangle"></div>
+                    <div class="triangle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="page">
+
+        <!-- Breadcrumbs -->
+        <section class="bg-gray-7">
+            <div class="breadcrumbs-custom box-transform-wrap context-dark">
+                <div class="container">
+                    <h3 class="breadcrumbs-custom-title">DRIVER RECRUITMENT</h3>
+                    <div class="breadcrumbs-custom-decor"></div>
+                </div>
+                <div class="box-transform" @*style="background-image: url(images/bg-1.jpg);"*@></div>
+            </div>
+            <div class="container">
+                <ul class="breadcrumbs-custom-path">
+                    <li><a href="/Home/Index">Trang Chủ</a></li>
+                    <li class="active">Tuyển Dụng</li>
+                </ul>
+            </div>
+        </section>
+        <!-- Contacts-->
+
+        <section class="section section-lg bg-default text-md-left">
+            <div class="container">
+                <div class="row row-60 justify-content-center">
+                    <div class="col-lg-8">
+                        <h4 class="text-spacing-25 text-transform-none">Recruitment Information Input</h4>
+                        @*<form class="rd-form rd-mailform" data-form-output="form-output-global" data-form-type="contact" method="post" action="Contact/Add">*@
+                        <form action="/Contact/Index" method="post" role="form" class="signup-form" enctype="multipart/form-data">
+
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary("", new { @class = "text-danger" })
+
+                            <div class="row row-20 gutters-20">
+                                <div class="col-md-6">
+                                    <div class="form-wrap">
+                                        <input class="form-input" id="Name" type="text" name="Name" placeholder="Your Name*" @*data-constraints="@Required"*@>
+                                    </div>
+                                    @Html.ValidationMessageFor(row => row.Name)
+
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-wrap">
+                                        <input class="form-input" id="Email" type="email" name="Email" placeholder="Your E-mail*" @*data-constraints="@Email @Required"*@>
+                                    </div>
+                                    @Html.ValidationMessageFor(row => row.Email)
+
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-wrap">
+                                        <input class="form-input" id="PhoneNumber" type="text" name="PhoneNumber" placeholder="Your Phone*" @*data-constraints="@Numeric"*@>
+                                    </div>
+                                    @Html.ValidationMessageFor(row => row.PhoneNumber)
+
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-wrap">
+                                        <input class="form-input" id="CCCDorCMND" type="text" name="CCCDorCMND" placeholder="CCCDorCMND*" @*data-constraints="@Numeric"*@>
+                                    </div>
+                                    @Html.ValidationMessageFor(row => row.CCCDorCMND)
+
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-wrap">
+                                        <textarea class="form-input textarea-lg" id="DiaChi" name="DiaChi" placeholder="Address*"></textarea> @*data-constraints="@Numeric"*@
+                                    </div>
+                                    @Html.ValidationMessageFor(row => row.DiaChi)
+
+                                </div>
+
+
+                                @*<div class="col-md-12">
+                                    @Html.TextBoxFor(x => x.ImagePapers, new { @id = "txtImage1", @class = "form-control" })
+                                    <input type="button" value="Tải ảnh CCCD" onclick="BrowseServer('txtImage1');" />
+                                </div>*@
+
+                                <div class="col-md-12">
+                                    <div class="form-wrap">
+                                        <input type="file" name="ImageFile" id="ImageFile" accept=".png, .jpg, .jpeg" />
+                                    </div>
+                                    @Html.ValidationMessageFor(row => row.ImagePeople)
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-wrap">
+                                        <input type="file" name="ImageFile1" id="ImageFile" accept=".png, .jpg, .jpeg" />
+                                    </div>
+                                    @Html.ValidationMessageFor(row => row.ImagePapers)
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-wrap">
+                                        <textarea class="form-input textarea-lg" id="Message" name="Message" placeholder="Loại xe:Exciter Màu xe:Xanh dương Biển số:88554"></textarea> @*data-constraints="@Numeric"*@
+                                    </div>
+                                    @Html.ValidationMessageFor(row => row.Message)
+
+                                </div>
+
+                            </div>
+                            <button class="button button-secondary button-winona" type="submit">Contact us</button>
+                        </form>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="aside-contacts">
+                            <div class="row row-30">
+                                <div class="col-sm-6 col-lg-12 aside-contacts-item">
+                                   
+
+                                </div>
+                                <div class="col-sm-6 col-lg-12 aside-contacts-item">
+                                    <p class="aside-contacts-title">Phone</p>
+                                    <div class="unit unit-spacing-xs justify-content-center justify-content-md-start">
+                                        <div class="unit-left"><span class="icon mdi mdi-phone"></span></div>
+                                        <div class="unit-body"><a class="phone" href="tel:#">0999999999</a></div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-lg-12 aside-contacts-item">
+                                    <p class="aside-contacts-title">E-mail</p>
+                                    <div class="unit unit-spacing-xs justify-content-center justify-content-md-start">
+                                        <div class="unit-left"><span class="icon mdi mdi-email-outline"></span></div>
+                                        <div class="unit-body"><a class="mail" href="mailto:#">hutechfood@gmail.com</a></div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-lg-12 aside-contacts-item">
+                                    <p class="aside-contacts-title">Address</p>
+                                    <div class="unit unit-spacing-xs justify-content-center justify-content-md-start">
+                                        <div class="unit-left"><span class="icon mdi mdi-map-marker"></span></div>
+                                        <div class="unit-body"><a class="address" href="https://goo.gl/maps/Cf8f8aVMhqy5Ewkb7">10/80C XL Hà Nội, Phường Tân Phú, Thủ Đức, Thành phố Hồ Chí Minh, Việt Nam <br class="d-md-none">Alexandria, VA, 2230</a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.4205948965823!2d106.78291401465324!3d10.855580060696438!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3175276e7ea103df%3A0xb6cf10bb7d719327!2sThu%20Duc%20Campus%20Hutech%20khu%20E!5e0!3m2!1svi!2s!4v1680541105633!5m2!1svi!2s" width="2000" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+
+
+    </div>
+    <!-- Global Mailform Output-->
+    <div class="snackbars" id="form-output-global"></div>
+    <!-- Javascript-->
+    @*<script src="~/Content/assets/js/core.min.js"></script>*@
+    <script src="~/Content/assets/js/script.js"></script>
+
+</body>
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            CKEDITOR.replace('txtDetail', {
+                customConfig: '/content/ckeditor/config.js',
+                extraAllowedContent: 'span',
+            });
+        });
+        function BrowseServer(field) {
+            var finder = new CKFinder();
+            finder.selectActionFunction = function (fileUrl) {
+                document.getElementById(field).value = fileUrl;
+            };
+            finder.popup();
+        }
+
+    </script>
+    <script src="~/Content/ckeditor/ckeditor/ckeditor.js"></script>
+    <script src="~/Content/ckfinder/ckfinder/ckfinder.js"></script>
+}
